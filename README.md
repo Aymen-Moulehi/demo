@@ -32,7 +32,15 @@
 - **@JsonIgnore:** permet d’ignorer une propriété ou une liste de propriétés dans l’objet JSON.
 - La signification de CascadeType.ALL est que la persistance propagera (cascade) toutes les opérations EntityManager (PERSIST, REMOVE, REFRESH, MERGE, DETACH) aux entités associées. (LIST)
 
-
+**@Scheduled(fixedRate = 10000)**
+``` java
+    @Scheduled(fixedRate = 10000)
+    public void retrieveRendezVous() {
+        Calendar cal = Calendar.getInstance();
+        Date date =cal.getTime();
+       rendezVousRepository.findAll().stream().filter(rendezVous1 -> rendezVous1.getDateRDZ().after(date)).forEach(rendezVous -> log.info(rendezVous.getRemarque()));
+    }
+```
 ## Keywords
 - Afficher la liste des projets qui ont une technologie précise.
 ```java
@@ -96,6 +104,17 @@ l’annotaion @Modifying pour activer la modification de la base de données.
 int updateEntrepriseByAdresse(@Param("adresse") String adresse,
 @Param("idEntreprise")
 Long idEntreprise);
+```
+
+## Chiffre affaire entre deux date
+``` java 
+@Query("SELECT sum (c.MontantContrat) FROM Contrat c  WHERE c.dateDebtutContrat between :startDate and :endDate and " +
+            "c.dateFinContrat between :startDate and :endDate and c.archive is false and c.specialite=:specialite")
+      
+float getChiffreAffaireEntreDeuxDateParSpecialite(
+    @Param("startDate") Date startDate,@Param("endDate")Date endDate,
+    @Param("specialite") String specialite
+);
 ```
 
 

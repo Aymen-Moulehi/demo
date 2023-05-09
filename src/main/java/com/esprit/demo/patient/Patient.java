@@ -1,12 +1,11 @@
-package com.esprit.demo.user;
+package com.esprit.demo.patient;
 
 
-import com.esprit.demo.contrat.Contrat;
+import com.esprit.demo.rendezvous.RendezVous;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.mapping.Set;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,17 +17,15 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements Serializable {
+public class Patient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idUser;
+    private Integer idPatient;
 
-    @Temporal (TemporalType.DATE)
-    private Date bithDate;
+    private String nomPatient;
+    private int telephone;
+    private Date dateNaissance;
 
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
-
-    @OneToMany
-    List<Contrat> contrats;
+    @OneToMany(mappedBy = "patient")
+    private List<RendezVous> rendezVous;
 }

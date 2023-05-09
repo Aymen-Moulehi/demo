@@ -1,4 +1,4 @@
-package com.esprit.demo.contrat;
+package com.esprit.demo.patient;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 @Aspect
 @Component
 @Slf4j
-public class ContratServiceImpl implements IContratService {
+public class PatientServiceImpl implements IPatientService {
 
-    ContratRepository contratRepository;
+    PatientRepository patientRepository;
 
     @Override
-    public Contrat addContrat(Contrat contrat) {
-        return contratRepository.save(contrat);
+    public Patient addPatient(Patient patient) {
+        return patientRepository.save(patient);
     }
 }

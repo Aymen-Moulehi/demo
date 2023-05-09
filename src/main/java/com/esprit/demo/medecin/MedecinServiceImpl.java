@@ -1,4 +1,4 @@
-package com.esprit.demo.user;
+package com.esprit.demo.medecin;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,12 +11,13 @@ import org.springframework.stereotype.Service;
 @Aspect
 @Component
 @Slf4j
-public class UserServiceImpl implements IUserService {
+public class MedecinServiceImpl implements IMedecinService {
 
-    UserRepository userRepository;
+    MedecinRepository medecinRepository;
 
     @Override
-    public User addUser(User user) {
-        return userRepository.save(user);
+    public Medecin addMedecin(Medecin medecin) {
+        return medecinRepository.save(medecin);
     }
+
 }
