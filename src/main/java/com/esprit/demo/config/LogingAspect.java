@@ -21,38 +21,29 @@ public class LogingAspect {
      * “..” veut dire, 0 ou plusieurs paramètres
      */
 
-    @Before("execution(* com.esprit.demo.*.add*(..))")
-
-    public void logMethodEntry(JoinPoint joinPoint) {
+    @After("execution(* com.esprit.demo.client.ClientServiceImpl.add*(..))")
+    public void logMethodAfterClient(JoinPoint joinPoint) {
         String name = joinPoint.getSignature().getName();
         log.info("In method " + name + " : ");
     }
 
-    @AfterReturning("execution(* com.esprit.demo.*.add*(..))")
-    public void logMethodAfterReturning(JoinPoint joinPoint) {
+    @After("execution(* com.esprit.demo.composant.ComposantServiceImpl.add*(..))")
+    public void logMethodComposant(JoinPoint joinPoint) {
         String name = joinPoint.getSignature().getName();
         log.info("In method " + name + " : ");
     }
 
-    @AfterThrowing("execution(* com.esprit.demo.*.add*(..))")
-    public void logMethodAfterThrowing(JoinPoint joinPoint) {
+    @After("execution(* com.esprit.demo.menu.MenuServiceImpl.add*(..))")
+    public void logMethodAfterMenu(JoinPoint joinPoint) {
         String name = joinPoint.getSignature().getName();
         log.info("In method " + name + " : ");
     }
 
-    @After("execution(* com.esprit.demo.*.add*(..))")
-    public void logMethodAfter(JoinPoint joinPoint) {
+    @After("execution(* com.esprit.demo.restaurant.RestaurantServiceImpl.add*(..))")
+    public void logMethodAfterRestaurant(JoinPoint joinPoint) {
         String name = joinPoint.getSignature().getName();
         log.info("In method " + name + " : ");
     }
 
-    @Around("execution(* com.esprit.demo.*.add*(..))")
-    public Object profile(ProceedingJoinPoint pjp) throws Throwable {
-        long start = System.currentTimeMillis();
-        Object obj = pjp.proceed();
-        long elapsedTime = System.currentTimeMillis() - start;
-        log.info("Method execution time: " + elapsedTime + " milliseconds.");
-        return obj;
-    }
 
 }

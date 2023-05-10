@@ -1,7 +1,8 @@
-package com.esprit.demo.clinique;
+package com.esprit.demo.restaurant;
 
 
-import com.esprit.demo.medecin.Medecin;
+import com.esprit.demo.menu.Menu;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,15 +17,12 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Clinique implements Serializable {
+public class Restaurant implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idClinique;
-
-   private String nomClinique;
-   private String adresse;
-   private int telephne;
-
-   @ManyToMany(mappedBy = "cliniques")
-   private List<Medecin> medecins;
+    private Integer idRestaurant;
+    private String nom;
+    private Long nbPlacesMax;
+    @OneToMany
+    private List<Menu> menus;
 }

@@ -1,13 +1,14 @@
-package com.esprit.demo.patient;
+package com.esprit.demo.client;
 
 
-import com.esprit.demo.rendezvous.RendezVous;
+import com.esprit.demo.menu.Menu;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -17,15 +18,13 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Patient implements Serializable {
+public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idPatient;
+    private Integer idClient;
+    private String identifiant;
+    private Date datePremiereVisite;
 
-    private String nomPatient;
-    private int telephone;
-    private Date dateNaissance;
-
-    @OneToMany(mappedBy = "patient")
-    private List<RendezVous> rendezVous;
+    @ManyToMany(mappedBy = "clients", fetch = FetchType.EAGER)
+    private List<Menu> menus;
 }
